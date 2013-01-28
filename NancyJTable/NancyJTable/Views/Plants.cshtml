@@ -1,0 +1,67 @@
+﻿@using Nancy
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Plants</title>
+        <link href="@Url.Content("~/Content/Scripts/jtable/themes/lightcolor/gray/jtable.min.css")" rel="stylesheet" type="text/css" />
+        <script src="@Url.Content("~/Content/Scripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Content/Scripts/jquery-ui-1.10.0.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Content/Scripts/jtable/jquery.jtable.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Content/Scripts/moment.min.js")" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#PlantsTableContainer').jtable({
+                    title: 'Table of plants',
+                    paging: true, 
+                    pageSize: 10,
+                    sorting: true, 
+                    defaultSorting: 'Name ASC', 
+                    actions: {
+                        listAction: '/plants',
+                    },
+                    fields: {
+                        Id: {
+                            title: 'Id',
+                            key: true,
+                            list: true,
+                            width: '10%',
+                            sorting: false
+                        },
+                        Name: {
+                            title: 'Name',
+                            width: '20%',
+                            display: function (data) {
+                                return $('<a href="/plants/' + data.record.Id + '">' + data.record.Name + '</a>');
+                            }
+                        },
+                        Genus: {
+                            title: 'Genus',
+                            width: '20%',
+                            sorting: false
+                        },
+                        Species: {
+                            title: 'Species',
+                            width: '20%',
+                            sorting: false
+                        },
+                        DateAdded: {
+                            title: 'Date added',
+                            width: '20%',
+                            sorting: false,
+                            display: function (data) {
+                                return moment(data.record.DateAdded).format('DD/MM/YYYY HH:mm:ss');
+                            }
+                        }
+                    }
+                });
+                $('#PlantsTableContainer').jtable('load');
+            });
+</script>
+    </head>
+    <body>
+        <div>
+            <div id="PlantsTableContainer"></div>
+        </div>
+    </body>
+</html>

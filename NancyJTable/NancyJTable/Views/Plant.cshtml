@@ -1,0 +1,35 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<NancyJTable.Models.PlantModel>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+    <div>
+        <h1>Welcome to the bush page</h1>
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>@Model.Id</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>@Model.Genus</td>
+            </tr>
+            <tr>
+                <td>Genus</td>
+                <td>@Model.Species</td>
+            </tr>
+            <tr>
+                <td>Species</td>
+                <td>@Model.Species</td>
+            </tr>
+            <tr>
+                <td>Date added</td>
+                <td>@Model.DateAdded</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
